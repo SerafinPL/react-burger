@@ -1,10 +1,11 @@
+import React, { Component } from 'react' ;
 
 
 
 function App() {
   return (
     <div >
-      <p>testy</p>
+      
     </div>
   );
 }
