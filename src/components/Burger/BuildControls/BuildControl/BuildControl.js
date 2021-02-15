@@ -1,12 +1,12 @@
 import React from 'react';
 
-import classes from './BulidControl.module.css'
+import classes from './BuildControl.module.css'
 
 const bulidControl = (props) => (
 		<div className={classes.BulidControl}>
-			<div {classes.Label}>{props.label}</div>
-			<button {classes.Less}>Mniej</button>
-			<button {classes.More}>Więcej</button>
+			<div className={classes.Label}>{props.label}</div>
+			<button className={classes.Less}>Mniej</button>
+			<button className={classes.More}>Więcej</button>
 		</div>
 	);
 

@@ -48,7 +48,7 @@ burgerIngredient.propTypes = {
 		'bread-bottom',
 		'bread-top',
 		'meat',
-		'chease',
+		'cheese',
 		'bacon',
 		'salad',
 		])
