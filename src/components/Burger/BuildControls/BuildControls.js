@@ -27,6 +27,8 @@ const bulidControls = (props) => (
 						)
 
 				)}
+			<button className={classes.OrderButton} 
+					disabled={!props.purchasable}>ZAMÓW</button>
 		</div>
 
 	);
