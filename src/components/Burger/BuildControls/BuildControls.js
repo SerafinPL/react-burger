@@ -27,8 +27,12 @@ const bulidControls = (props) => (
 						)
 
 				)}
-			<button className={classes.OrderButton} 
-					disabled={!props.purchasable}>ZAMÓW</button>
+			<button 
+				className={classes.OrderButton} 
+				disabled={!props.purchasable}
+				onClick={props.ordered}>
+				ZAMÓW
+			</button>
 		</div>
 
 	);
