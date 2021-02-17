@@ -5,16 +5,16 @@ import BuildControl from './BuildControl/BuildControl';
 
 
 const controls = [
-	{ label: 'Salad', type: 'salad'},
-	{ label: 'Bacon', type: 'bacon'},
-	{ label: 'Cheese', type: 'cheese'},
-	{ label: 'Meat', type: 'meat'},
+	{ label: 'Sałata', type: 'salad'},
+	{ label: 'Bekon', type: 'bacon'},
+	{ label: 'Ser', type: 'cheese'},
+	{ label: 'Mięso', type: 'meat'},
 ];
 
 const bulidControls = (props) => (
 
 		<div className={classes.BuildControls}>
-			<p>Aktylana Cena: <strong>{props.price.toFixed(2)}</strong></p>
+			<p>Aktulana Cena: <strong>{props.price.toFixed(2)}</strong></p>
 			{controls.map(	ctrl => (
 							<BuildControl 
 								key={ctrl.label} 
