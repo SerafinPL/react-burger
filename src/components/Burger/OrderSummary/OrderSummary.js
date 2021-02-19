@@ -1,46 +1,49 @@
-import React from 'react';
+import React, {Component} from 'react';
 
 import Aux from '../../../hoc/Aux';
 import Button from '../../UI/Button/Button';
 
-const orderSummary = (props) => {
+class OrderSummary extends Component {
 
-	const controls = [
-					{ label: 'Sałata', type: 'salad'},
-					{ label: 'Bekon', type: 'bacon'},
-					{ label: 'Ser', type: 'cheese'},
-					{ label: 'Mięso', type: 'meat'},
-				];
+	componentDidUpdate(){
+		console.log('order was update!')
+	}
 
-	const ingredientSummary = Object.keys(props.ingredients).map(igKey => {
-			 
-			
-				const aIndex = controls.findIndex(value =>{
-					return (igKey === value.type);
-				});
+	render(){
+		const controls = [
+						{ label: 'Sałata', type: 'salad'},
+						{ label: 'Bekon', type: 'bacon'},
+						{ label: 'Ser', type: 'cheese'},
+						{ label: 'Mięso', type: 'meat'},
+					];
 
-			return(
-			
-			<li key={igKey}>
-				<span style={{textTransform: 'capitalize'}}>{controls.[aIndex].label}</span>: {props.ingredients[igKey]}
-			</li>
-			)
-		});
+		const ingredientSummary = Object.keys(this.props.ingredients).map(igKey => {
+					const aIndex = controls.findIndex(value =>{
+						return (igKey === value.type);
+					});
 
-	;
-	return (
-		<Aux>
-			<h3>Twoje zamówinie</h3>
-			<p>Przepyszny Burger z poniższymi składnikami</p>
-			<ul> 
-				{ingredientSummary}
-			</ul>
-			<p><strong>Cena Burgera: {props.price.toFixed(2)} zł</strong></p>
-			<p>Chcesz złożyć zamówienie?</p>
-			<Button btnType='Danger' clicked={props.purchaseCanceled}>ANULUJ</Button>
-			<Button btnType='Success' clicked={props.purchaseContinue} >KONTYNUUJ</Button>
-		</Aux>
-	)
+				return(				
+					<li key={igKey}>
+						<span style={{textTransform: 'capitalize'}}>{controls.[aIndex].label}</span>: {this.props.ingredients[igKey]}
+					</li>
+				)
+			});
+
+	
+		return (
+			<Aux>
+				<h3>Twoje zamówinie</h3>
+				<p>Przepyszny Burger z poniższymi składnikami</p>
+				<ul> 
+					{ingredientSummary}
+				</ul>
+				<p><strong>Cena Burgera: {this.props.price.toFixed(2)} zł</strong></p>
+				<p>Chcesz złożyć zamówienie?</p>
+				<Button btnType='Danger' clicked={this.props.purchaseCanceled}>ANULUJ</Button>
+				<Button btnType='Success' clicked={this.props.purchaseContinue} >KONTYNUUJ</Button>
+			</Aux>
+		)
+	}
 };
 
-export default orderSummary;
+export default OrderSummary;
