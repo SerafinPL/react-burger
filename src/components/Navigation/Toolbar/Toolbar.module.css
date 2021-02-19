@@ -22,8 +22,17 @@
 	height:80%;
 }
 
+
+	.Menu{
+		display: none;
+	}
+
 @media (max-width: 499px){
 	.DesktopOnly{
 		display: none;
+	}
+
+	.Menu{
+		display: block;
 	}
 }
