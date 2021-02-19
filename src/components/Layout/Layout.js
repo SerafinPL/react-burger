@@ -12,7 +12,7 @@ class Layout extends Component {
 	}
 
 	state ={
-		showSideDrawer: true
+		showSideDrawer: false
 	}
 
 	sideDrawerClosedHandler = () =>{
