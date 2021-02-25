@@ -9,13 +9,21 @@ const withErrorHandler = (WrappedComponent, axios) => {
 		const [errorState, useErrorState] = useState(null);
 
 		useEffect(() => {
-			axios.interceptors.request.use(req => {
+			let reqInterceptor = axios.interceptors.request.use(req => {
 				useErrorState(null);
 				return req;
 			});
-			axios.interceptors.response.use(res => res, error => {
+			let resInterceptor = axios.interceptors.response.use(res => res, error => {
 				useErrorState(error);
 			});
+			console.log('useEffect', reqInterceptor, resInterceptor );
+			return () => {
+				console.log('useEffect Return', reqInterceptor, resInterceptor );
+				axios.interceptors.request.eject(reqInterceptor);
+				axios.interceptors.response.eject(resInterceptor);
+				console.log('useEffect Return2', reqInterceptor, resInterceptor );
+			};
+
 		}, []);
 
 		const showing = errorState ? true : false;
