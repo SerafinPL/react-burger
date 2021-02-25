@@ -7,16 +7,17 @@ const App = () => {
 
 	const [testState, setTestState] = useState(true);
 
-	useEffect(() =>{
+	useEffect(() =>{	//it is componentDidMount
 		setTimeout(() => {
 			setTestState(false)
 		},5000);
-	}, [] );
+		//return () => {} componentWillUnmount
+	}, [] );  
 
   return (
     <div >
       <Layout>
-        {testState ? <BurgerBuilder/> : null}
+        <BurgerBuilder/>
       </Layout>
     </div>
   );
