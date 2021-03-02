@@ -12,31 +12,27 @@ const Checkout = (props) => {
 	});
 
 	useEffect(() => {
-		searchQuery();
+		//searchQuery();
 	});
 
-	const searchQuery = () => {
-        const query = new URLSearchParams(props.location.search);
+	// const searchQuery = () => {
+ //        const query = new URLSearchParams(props.location.search);
         
-        let newIngredients = {};
-        newIngredients.salad = Number(query.get('salad'));
+ //        let newIngredients = {};
+ //        newIngredients.salad = Number(query.get('salad'));
         
-        newIngredients.cheese = Number(query.get('cheese'));
-        newIngredients.bacon = Number(query.get('bacon'));
-        newIngredients.meat = Number(query.get('meat'));
-         if (ingredients.salad != newIngredients.salad || 
-        		ingredients.cheese != newIngredients.cheese ||
-        		ingredients.bacon != newIngredients.bacon ||
-        		ingredients.meat != newIngredients.meat){
-         	ingredientsSet(newIngredients);
-         console.log(ingredients);
-         console.log(newIngredients);
-         }
-        console.log(ingredients.salad);
-        console.log(ingredients.salad !== newIngredients.salad);
-        console.log(ingredients);
+ //        newIngredients.cheese = Number(query.get('cheese'));
+ //        newIngredients.bacon = Number(query.get('bacon'));
+ //        newIngredients.meat = Number(query.get('meat'));
+ //         if (ingredients.salad != newIngredients.salad || 
+ //        		ingredients.cheese != newIngredients.cheese ||
+ //        		ingredients.bacon != newIngredients.bacon ||
+ //        		ingredients.meat != newIngredients.meat){
+ //         	ingredientsSet(newIngredients);
+ //         }
         
-    }
+        
+ //    }
 
 	const CheckoutCancelHandler = () => {
 		props.history.goBack();
