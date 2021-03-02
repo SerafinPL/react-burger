@@ -11,9 +11,21 @@ const Checkout = (props) => {
 		bacon: 1
 	});
 
+	const CheckoutCancelHandler = () => {
+		props.history.goBack();
+	}
+
+	const CheckoutContinueHandler = () => {
+		props.history.replace('/checkout/contact-data');
+	}
+
 	return(
 		<div>
-			<CheckoutSummary ingredients={ingredients}/>
+			<CheckoutSummary 
+				ingredients={ingredients} 
+				CheckoutCancel={CheckoutCancelHandler} 
+				CheckoutContinue={CheckoutContinueHandler}
+			/>
 		</div>
 		);
 }
