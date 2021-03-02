@@ -149,13 +149,28 @@ class BurgerBuilder extends Component {
 	// }
 
 	continueHandler = () => {
+		//MY WAY
+		/*
 		let list = '';
 		for (let property in this.state.ingredients) {
 			list += property + '=' + this.state.ingredients[property] + '&'
 		}
 		console.log(list);
-		this.props.history.push('/checkout?' + list);
-		
+		this.props.history.push('/checkout?' + list);*/
+
+		// Alternative WAY
+
+		const queryParams = [];
+
+		for (let property in this.state.ingredients) {
+			queryParams.push(encodeURIComponent(property) + '=' + encodeURIComponent(this.state.ingredients[property]));
+		}
+		const queryString = queryParams.join('&');
+
+		this.props.history.push({
+			pathname: '/checkout',
+			search: '?' + queryString
+		});
 	}
 
 	render(){
