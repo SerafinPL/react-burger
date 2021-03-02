@@ -146,6 +146,12 @@ class BurgerBuilder extends Component {
 				} );
 	}
 
+	purContinueHandler =() => {
+		
+		this.props.history.push('/course/' + id);
+
+	}
+
 	render(){
 
 		const disabledInfo = {
@@ -157,10 +163,6 @@ class BurgerBuilder extends Component {
 		}
 
 		let orderSummary = null; 
-
-		
-
-		
 
 		let burger = this.state.error ? <p style={{textAlign: 'center'}}>Składników nie da się załadować</p> : <Spinner />
 
@@ -184,7 +186,7 @@ class BurgerBuilder extends Component {
 			orderSummary = <OrderSummary 
 							ingredients={this.state.ingredients}
 							purchaseCanceled={this.purchaseCancelHandler}
-							purchaseContinue={this.purchaseContinueHandler}
+							purchaseContinue={this.purContinueHandler}
 							price={this.state.totalPrice}
 						/>;
 
