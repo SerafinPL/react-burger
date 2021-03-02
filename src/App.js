@@ -24,7 +24,7 @@ const App = () => {
 	      		<Route path='/' exact component={BurgerBuilder} />
 	        	{/*<BurgerBuilder/>*/}
 	        	{/*<Checkout />*/}
-	        	<Route path='/checkout' exact component={Checkout} />
+	        	<Route path='/checkout' component={Checkout} />
         	</Switch>
         </BrowserRouter>
       </Layout>

@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from 'react';
 
 import CheckoutSummary from '../../components/Order/CheckoutSummary/CheckoutSummary';
+import ContactData from './ContactData/ContactData';
+import {Route} from 'react-router-dom';
 
 const Checkout = (props) => {
 
@@ -59,6 +61,7 @@ const Checkout = (props) => {
 				CheckoutCancel={CheckoutCancelHandler} 
 				CheckoutContinue={CheckoutContinueHandler}
 			/>
+			<Route path='/checkout/contact-data' component={ContactData} />
 		</div>
 		);
 }
