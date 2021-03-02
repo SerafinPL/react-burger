@@ -2,6 +2,8 @@ import React, { Component, useState, useEffect} from 'react' ;
 
 import Layout from './hoc/Layout/Layout';
 import BurgerBuilder from './containers/BurgerBuilder/BurgerBuilder';
+import Checkout from './containers/Checkout/Checkout';
+import {Route,BrowserRouter, Switch} from 'react-router-dom';
 
 const App = () => {
 
@@ -17,7 +19,14 @@ const App = () => {
   return (
     <div >
       <Layout>
-        <BurgerBuilder/>
+      	<BrowserRouter>
+      		<Switch>
+	      		<Route path='/' exact component={BurgerBuilder} />
+	        	{/*<BurgerBuilder/>*/}
+	        	{/*<Checkout />*/}
+	        	<Route path='/checkout' exact component={Checkout} />
+        	</Switch>
+        </BrowserRouter>
       </Layout>
     </div>
   );
