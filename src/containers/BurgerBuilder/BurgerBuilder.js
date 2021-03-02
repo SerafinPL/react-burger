@@ -41,6 +41,8 @@ class BurgerBuilder extends Component {
 				// 		this.state.ingredients.meat * INGREDIENT_PRICES.meat +
 				// 		this.state.ingredients.bacon * INGREDIENT_PRICES.bacon + this.state.totalPrice;
 				this.setState({totalPrice: price});
+				this.setState({purchasable: price > 4});
+
 		})
 		.catch(error => {
 			this.setState({error: true});
@@ -119,37 +121,35 @@ class BurgerBuilder extends Component {
 		this.setState({purchasing: false});
 	}
 
-	purchaseContinueHandler = () => {
-			//alert('kontynuujesz ale niestety kanapki nie skosztujesz :/');
-			this.setState({loading: true});
-			const order = {
-				ingredients: this.state.ingredients,
-				price: this.state.totalPrice,
-				customer: {
-					name: 'KubaKoder',
-					address:{
-						street: 'zamkowa 3',
-						zipCode: '40555',
-						city: 'K-ce',
-						country: 'Poland'
-					},
-					email: 'testowy@test.pl'
-				},
-				deliveryMethod: 'fastest'
-			}
-			axios.post('/orders.json', order)
-				.then(response => {
-					this.setState({loading: false, purchasing: false});
-				} )
-				.catch(error => {
-					this.setState({loading: false, purchasing: false});
-				} );
-	}
+	// purchaseContinueHandler = () => {
+	// 		//alert('kontynuujesz ale niestety kanapki nie skosztujesz :/');
+	// 		this.setState({loading: true});
+	// 		const order = {
+	// 			ingredients: this.state.ingredients,
+	// 			price: this.state.totalPrice,
+	// 			customer: {
+	// 				name: 'KubaKoder',
+	// 				address:{
+	// 					street: 'zamkowa 3',
+	// 					zipCode: '40555',
+	// 					city: 'K-ce',
+	// 					country: 'Poland'
+	// 				},
+	// 				email: 'testowy@test.pl'
+	// 			},
+	// 			deliveryMethod: 'fastest'
+	// 		}
+	// 		axios.post('/orders.json', order)
+	// 			.then(response => {
+	// 				this.setState({loading: false, purchasing: false});
+	// 			} )
+	// 			.catch(error => {
+	// 				this.setState({loading: false, purchasing: false});
+	// 			} );
+	// }
 
-	purContinueHandler =() => {
-		
-		this.props.history.push('/course/' + id);
-
+	continueHandler = () => {
+		this.props.history.push('/checkout' );
 	}
 
 	render(){
@@ -186,7 +186,7 @@ class BurgerBuilder extends Component {
 			orderSummary = <OrderSummary 
 							ingredients={this.state.ingredients}
 							purchaseCanceled={this.purchaseCancelHandler}
-							purchaseContinue={this.purContinueHandler}
+							purchaseContinue={this.continueHandler}
 							price={this.state.totalPrice}
 						/>;
 
