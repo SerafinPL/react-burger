@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 
 import CheckoutSummary from '../../components/Order/CheckoutSummary/CheckoutSummary';
 
@@ -10,6 +10,26 @@ const Checkout = (props) => {
 		cheese: 1,
 		bacon: 1
 	});
+
+	useEffect(() => {
+		searchQuery();
+	},[]);
+
+	const searchQuery = () => {
+        const query = new URLSearchParams(props.location.search);
+        
+        let newIngredients = {};
+        newIngredients.salad = query.get('salad');
+        
+        newIngredients.cheese = query.get('cheese');
+        newIngredients.bacon = query.get('bacon');
+        newIngredients.meat = query.get('meat');
+        // if (ingredients != newIngredients){
+        // 	ingredientsSet(newIngredients);
+        // }
+        console.log(newIngredients);
+        
+    }
 
 	const CheckoutCancelHandler = () => {
 		props.history.goBack();

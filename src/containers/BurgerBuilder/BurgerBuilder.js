@@ -149,7 +149,12 @@ class BurgerBuilder extends Component {
 	// }
 
 	continueHandler = () => {
-		this.props.history.push('/checkout' );
+		let list = '';
+		for (let property in this.state.ingredients) {
+			list += property + '=' + this.state.ingredients[property] + '&'
+		}
+		console.log(list);
+		this.props.history.push('/checkout?' + list);
 	}
 
 	render(){
