@@ -13,21 +13,28 @@ const Checkout = (props) => {
 
 	useEffect(() => {
 		searchQuery();
-	},[]);
+	});
 
 	const searchQuery = () => {
         const query = new URLSearchParams(props.location.search);
         
         let newIngredients = {};
-        newIngredients.salad = query.get('salad');
+        newIngredients.salad = Number(query.get('salad'));
         
-        newIngredients.cheese = query.get('cheese');
-        newIngredients.bacon = query.get('bacon');
-        newIngredients.meat = query.get('meat');
-        // if (ingredients != newIngredients){
-        // 	ingredientsSet(newIngredients);
-        // }
-        console.log(newIngredients);
+        newIngredients.cheese = Number(query.get('cheese'));
+        newIngredients.bacon = Number(query.get('bacon'));
+        newIngredients.meat = Number(query.get('meat'));
+         if (ingredients.salad != newIngredients.salad || 
+        		ingredients.cheese != newIngredients.cheese ||
+        		ingredients.bacon != newIngredients.bacon ||
+        		ingredients.meat != newIngredients.meat){
+         	ingredientsSet(newIngredients);
+         console.log(ingredients);
+         console.log(newIngredients);
+         }
+        console.log(ingredients.salad);
+        console.log(ingredients.salad !== newIngredients.salad);
+        console.log(ingredients);
         
     }
 
