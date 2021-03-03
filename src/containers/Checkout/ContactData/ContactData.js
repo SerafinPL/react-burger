@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 import Button from '../../../components/UI/Button/Button';
 import classes from './ContactData.module.css';
 import axios from '../../../axios-orders';
+import Spinner from '../../../components/UI/Spinner/Spinner';
 
 class ContactData extends Component {
 
@@ -19,7 +20,7 @@ class ContactData extends Component {
 
 	orderHandler = (event) => {
 		event.preventDefault();
-				//this.setState({loading: true});
+			this.setState({loading: true});
 			const order = {
 				ingredients: this.props.ingredients,
 				price: this.props.price,
@@ -37,19 +38,18 @@ class ContactData extends Component {
 			}
 			axios.post('/orders.json', order)
 				.then(response => {
-					this.setState({loading: false, purchasing: false});
+					this.setState({loading: false});
 					console.log(order);
 				} )
 				.catch(error => {
-					this.setState({loading: false, purchasing: false});
+					this.setState({loading: false});
 				} );
 	}
 
 	render(){
 
-		return(
-				<div className={classes.ContactData}>
-					<h4>Wprowadź dane do zamówienia:</h4>
+		let form = (
+			
 					<form>
 						<input type='text' name='name' placeholder='Twoje Imię'/>
 						<input type='text' name='email' placeholder='Twój Email'/>
@@ -58,6 +58,18 @@ class ContactData extends Component {
 						<input type='text' name='city' placeholder='Miasto'/>
 						<Button btnType='Success' clicked={this.orderHandler}>Zamów</Button>
 					</form>
+			
+					);
+
+		if (this.state.loading){
+			form = (<Spinner/>);
+		}
+
+		return(
+				<div className={classes.ContactData}>
+					<h4>Wprowadź dane do zamówienia:</h4>
+				
+					{form}
 				</div>
 			);
 	}
