@@ -1,32 +1,78 @@
-import React, {useEffect, useState}from 'react';
+import React, {useEffect, useState, Component} from 'react';
 
 import Order from '../../components/Order/Order';
 import axios from '../../axios-orders';
+import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 
-const OrdersPage = () => {
+class OrdersPage extends Component{
 
-	const [loadingHook, loadingSetHook] = useState(true);
-	const [ordersHook, ordersSetHook] = useState([]);
 
-	useEffect(() => {
+	// const [loadingHook, loadingSetHook] = useState(true);
+	// const [ordersHook, ordersSetHook] = useState([]);
+	
 
-		axios.get('/ordes.json')
+
+	// useEffect(() => {
+		
+	// 	axios.get('/orders.json')
+	// 		.then(response => {
+	// 			const fatchedOrders = [];
+	// 			for (let key in response.data){
+	// 				fatchedOrders.push({
+	// 					...response.data[key],
+	// 					id: key
+
+	// 				});
+	// 			}
+
+	// 			console.log(fatchedOrders);
+	// 			ordersSetHook(...fatchedOrders);
+	// 			console.log(ordersHook);
+	// 			loadingSetHook(false);
+	// 		})
+	// 		.catch(error => {
+	// 			loadingSetHook(false);
+	// 		});
+
+	// },[]); 
+
+	state ={
+		orders: [],
+		loading: true
+	}
+
+	componentDidMount() {
+		axios.get('/orders.json')
 			.then(response => {
-				loadingSetHook(false);
+				const fatchedOrders = [];
+				for (let key in response.data){
+					fatchedOrders.push({
+						...response.data[key],
+						id: key
+
+					});
+				}
+				this.setState({loading:false, orders: fatchedOrders});
 			})
 			.catch(error => {
-				loadingSetHook(false);
+				this.setState({loading:false});
 			});
+	}
 
-	},[]); 
-
-	return(
+	render(){
+		return(
 			<div>
-				<Order/>
-				<Order/>
+				{this.state.orders.map(order => (
+						<Order key={order.id}/>
+					))}
+				
+				
 			</div>
 		);
 
+	}
+	
+
 }
 
-export default OrdersPage;
+export default withErrorHandler(OrdersPage, axios);
