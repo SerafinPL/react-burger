@@ -11,20 +11,26 @@ const Checkout = (props) => {
 		meat:1,
 		cheese: 1,
 		bacon: 1
-		
-
 	});
+
+	const [priceHook, priceSetHook] = useState(0);
 
 	useEffect(() => {
 		//searchQuery();
 
 		const query = new URLSearchParams(props.location.search);
 		const ingredients = {};
+		let price = 0;
 		for (let param of query.entries()){
-			ingredients[param[0]] = +param[1];
+			if (param[0] === 'price') {
+				price = param[1]; 
+			} else {
+				ingredients[param[0]] = +param[1];
+			}
 		}
 
 		ingredientsSetHook(ingredients);
+		priceSetHook(price);
 	},[]);
 	// My Version
 	/*const searchQuery = () => {
@@ -61,7 +67,11 @@ const Checkout = (props) => {
 				CheckoutCancel={CheckoutCancelHandler} 
 				CheckoutContinue={CheckoutContinueHandler}
 			/>
-			<Route path={props.match.path + '/contact-data'} component={ContactData} />
+			<Route 
+				path={props.match.path + '/contact-data'} 
+				//component={ContactData}
+				render={() => (<ContactData ingredients={ingredientsHook} price={priceHook}/>)} 
+			/>
 		</div>
 		);
 }
