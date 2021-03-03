@@ -70,7 +70,7 @@ const Checkout = (props) => {
 			<Route 
 				path={props.match.path + '/contact-data'} 
 				//component={ContactData}
-				render={() => (<ContactData ingredients={ingredientsHook} price={priceHook}/>)} 
+				render={(props) => (<ContactData ingredients={ingredientsHook} price={priceHook} {...props}/>)} 
 			/>
 		</div>
 		);
