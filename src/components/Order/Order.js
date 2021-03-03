@@ -32,7 +32,9 @@ const Order = (props) => {
 					style={{
 						textTransform: 'capitalize',
 						display: 'inline-block',
-						padding: '5px'
+						padding: '5px',
+						margin: '0 8px',
+						border: '1px solid #eee'
 					}}
 				>
 					{controls[aIndex].label} ({igValue.amount})    
