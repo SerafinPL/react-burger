@@ -5,7 +5,10 @@ import Order from '../../components/Order/Order';
 const OrdersPage = () => {
 
 	return(
-
+			<div>
+				<Order/>
+				<Order/>
+			</div>
 		);
 
 }
