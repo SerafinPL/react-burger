@@ -20,16 +20,20 @@ const App = () => {
 
   return (
     <div >
-      <Layout>
       	<BrowserRouter>
-      		<Switch>
-	      		<Route path='/' exact component={BurgerBuilder} />
-	        	{/*<BurgerBuilder/>*/}
-	        	{/*<Checkout />*/}
-	        	<Route path='/checkout' component={Checkout} />
-        	</Switch>
+	      	<Layout>
+      	
+	      		<Switch>
+		      		
+		        	{/*<BurgerBuilder/>*/}
+		        	{/*<Checkout />*/}
+		        	<Route path='/orders' exact component={OrdersPage} />
+		        	<Route path='/checkout' component={Checkout} />
+		        	<Route path='/' exact component={BurgerBuilder} />
+	        	</Switch>
+        	</Layout>
         </BrowserRouter>
-      </Layout>
+      
     </div>
   );
 }
