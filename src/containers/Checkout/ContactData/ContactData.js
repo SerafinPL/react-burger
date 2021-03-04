@@ -9,12 +9,62 @@ import Input from '../../../components/UI/Input/Input';
 class ContactData extends Component {
 
 	state ={
-		name: '',
-		email: '',
-		address: {
-			street: '',
-			postalCode: '',
-			city: ''
+		
+		name: {
+			elementType: 'input',
+			elementConfig: {
+				type: 'text'
+				placeholder: 'Twoje Imię'
+			},
+			value: ''
+		},
+		street: {
+			elementType: 'input',
+			elementConfig: {
+				type: 'text'
+				placeholder: 'Ulica'
+			},
+			value: ''
+		},
+		zipCode: {
+			elementType: 'input',
+			elementConfig: {
+				type: 'text'
+				placeholder: 'Kod-pocztowy'
+			},
+			value: ''
+		},
+		city: {
+			elementType: 'input',
+			elementConfig: {
+				type: 'text'
+				placeholder: 'Miasto'
+			},
+			value: ''
+		},
+		country: {
+			elementType: 'input',
+			elementConfig: {
+				type: 'text'
+				placeholder: 'Kraj'
+			},
+			value: ''
+		},
+		email: {
+			elementType: 'input',
+			elementConfig: {
+				type: 'email'
+				placeholder: 'Twój Email'
+			},
+			value: ''
+		},
+		deliveryMethod: {
+			elementType: 'select',
+			elementConfig: {
+				[{value: 'fastest', displayValue:'Najszybciej'},
+				{value: 'chipest', displayValue:'Najtaniej'}]
+			},
+			value: ''
 		},
 		loading: false
 	}
@@ -25,17 +75,7 @@ class ContactData extends Component {
 			const order = {
 				ingredients: this.props.ingredients,
 				price: this.props.price,
-				customer: {
-					name: 'KubaKoder',
-					address:{
-						street: 'zamkowa 3',
-						zipCode: '40555',
-						city: 'K-ce',
-						country: 'Poland'
-					},
-					email: 'testowy@test.pl'
-				},
-				deliveryMethod: 'fastest'
+				
 			}
 			axios.post('/orders.json', order)
 				.then(response => {
@@ -52,11 +92,11 @@ class ContactData extends Component {
 		let form = (
 			
 					<form>
-						<Input inputType='input' type='text' name='name' placeholder='Twoje Imię'/>
-						<Input inputType='input' type='email' name='email' placeholder='Twój Email'/>
-						<Input inputType='input' type='text' name='street' placeholder='Ulica'/>
-						<Input inputType='input' type='text' name='postalCode' placeholder='Kod pocztowy'/>
-						<Input inputType='input' type='text' name='city' placeholder='Miasto'/>
+						<Input elementType='...' elementConfig='...' value='...'/>
+						<Input input_type='input' type='email' name='email' placeholder='Twój Email'/>
+						<Input input_type='input' type='text' name='street' placeholder='Ulica'/>
+						<Input input_type='input' type='text' name='postalCode' placeholder='Kod pocztowy'/>
+						<Input input_type='input' type='text' name='city' placeholder='Miasto'/>
 						<Button btnType='Success' clicked={this.orderHandler}>Zamów</Button>
 					</form>
 			
