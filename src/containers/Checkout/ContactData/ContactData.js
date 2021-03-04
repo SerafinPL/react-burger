@@ -4,6 +4,7 @@ import Button from '../../../components/UI/Button/Button';
 import classes from './ContactData.module.css';
 import axios from '../../../axios-orders';
 import Spinner from '../../../components/UI/Spinner/Spinner';
+import Input from '../../../components/UI/Input/Input';
 
 class ContactData extends Component {
 
@@ -51,11 +52,11 @@ class ContactData extends Component {
 		let form = (
 			
 					<form>
-						<input type='text' name='name' placeholder='Twoje Imię'/>
-						<input type='text' name='email' placeholder='Twój Email'/>
-						<input type='text' name='street' placeholder='Ulica'/>
-						<input type='text' name='postalCode' placeholder='Kod pocztowy'/>
-						<input type='text' name='city' placeholder='Miasto'/>
+						<Input inputType='input' type='text' name='name' placeholder='Twoje Imię'/>
+						<Input inputType='input' type='email' name='email' placeholder='Twój Email'/>
+						<Input inputType='input' type='text' name='street' placeholder='Ulica'/>
+						<Input inputType='input' type='text' name='postalCode' placeholder='Kod pocztowy'/>
+						<Input inputType='input' type='text' name='city' placeholder='Miasto'/>
 						<Button btnType='Success' clicked={this.orderHandler}>Zamów</Button>
 					</form>
 			
