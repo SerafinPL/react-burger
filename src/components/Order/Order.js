@@ -49,8 +49,9 @@ const Order = (props) => {
 
 	return(
 			<div className={classes.Order}>
-				{ingredientsOutput}
 				<p>Składniki:</p>
+				{ingredientsOutput}
+				
 				<p>Cena: <strong>{Number.parseFloat(props.price).toFixed(2)}</strong> zł</p>
 			</div>
 		);
