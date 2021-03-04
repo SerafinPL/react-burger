@@ -10,63 +10,65 @@ class ContactData extends Component {
 
 	state ={
 		
-		name: {
-			elementType: 'input',
-			elementConfig: {
-				type: 'text',
-				placeholder: 'Twoje Imię'
-			},
-			value: ''
-		},
-		street: {
-			elementType: 'input',
-			elementConfig: {
-				type: 'text',
-				placeholder: 'Ulica'
-			},
-			value: ''
-		},
-		zipCode: {
-			elementType: 'input',
-			elementConfig: {
-				type: 'text',
-				placeholder: 'Kod-pocztowy'
-			},
-			value: ''
-		},
-		city: {
-			elementType: 'input',
-			elementConfig: {
-				type: 'text',
-				placeholder: 'Miasto'
-			},
-			value: ''
-		},
-		country: {
-			elementType: 'input',
-			elementConfig: {
-				type: 'text',
-				placeholder: 'Kraj'
-			},
-			value: ''
-		},
-		email: {
-			elementType: 'input',
-			elementConfig: {
-				type: 'email',
-				placeholder: 'Twój Email'
-			},
-			value: ''
-		},
-		deliveryMethod: {
-			elementType: 'select',
-			elementConfig:{
-				options:			
-				[{value: 'fastest', displayValue:'Najszybciej'},
-				{value: 'chipest', displayValue:'Najtaniej'}]
-			} ,
-			value: ''
-		},
+			orderForm :{
+						name: {
+							elementType: 'input',
+							elementConfig: {
+								type: 'text',
+								placeholder: 'Twoje Imię'
+							},
+							value: ''
+						},
+						street: {
+							elementType: 'input',
+							elementConfig: {
+								type: 'text',
+								placeholder: 'Ulica'
+							},
+							value: ''
+						},
+						zipCode: {
+							elementType: 'input',
+							elementConfig: {
+								type: 'text',
+								placeholder: 'Kod-pocztowy'
+							},
+							value: ''
+						},
+						city: {
+							elementType: 'input',
+							elementConfig: {
+								type: 'text',
+								placeholder: 'Miasto'
+							},
+							value: ''
+						},
+						country: {
+							elementType: 'input',
+							elementConfig: {
+								type: 'text',
+								placeholder: 'Kraj'
+							},
+							value: ''
+						},
+						email: {
+							elementType: 'input',
+							elementConfig: {
+								type: 'email',
+								placeholder: 'Twój Email'
+							},
+							value: ''
+						},
+						deliveryMethod: {
+							elementType: 'select',
+							elementConfig:{
+								options:			
+								[{value: 'fastest', displayValue:'Najszybciej'},
+								{value: 'chipest', displayValue:'Najtaniej'}]
+							} ,
+							value: ''
+						}
+					},
 		loading: false
 	}
 
@@ -89,11 +91,12 @@ class ContactData extends Component {
 	}
 
 	render(){
-
+		const formElementArr = [];
+		for (let key in this.state.orderForm){}
 		let form = (
 			
 					<form>
-						<Input elementType='...' elementConfig='...' value='...'/>
+						{/*<Input elementType='...' elementConfig='...' value='...'/>*/}
 						<Input input_type='input' type='email' name='email' placeholder='Twój Email'/>
 						<Input input_type='input' type='text' name='street' placeholder='Ulica'/>
 						<Input input_type='input' type='text' name='postalCode' placeholder='Kod pocztowy'/>
