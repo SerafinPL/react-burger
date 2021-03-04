@@ -13,7 +13,7 @@ class ContactData extends Component {
 		name: {
 			elementType: 'input',
 			elementConfig: {
-				type: 'text'
+				type: 'text',
 				placeholder: 'Twoje Imię'
 			},
 			value: ''
@@ -21,7 +21,7 @@ class ContactData extends Component {
 		street: {
 			elementType: 'input',
 			elementConfig: {
-				type: 'text'
+				type: 'text',
 				placeholder: 'Ulica'
 			},
 			value: ''
@@ -29,7 +29,7 @@ class ContactData extends Component {
 		zipCode: {
 			elementType: 'input',
 			elementConfig: {
-				type: 'text'
+				type: 'text',
 				placeholder: 'Kod-pocztowy'
 			},
 			value: ''
@@ -37,7 +37,7 @@ class ContactData extends Component {
 		city: {
 			elementType: 'input',
 			elementConfig: {
-				type: 'text'
+				type: 'text',
 				placeholder: 'Miasto'
 			},
 			value: ''
@@ -45,7 +45,7 @@ class ContactData extends Component {
 		country: {
 			elementType: 'input',
 			elementConfig: {
-				type: 'text'
+				type: 'text',
 				placeholder: 'Kraj'
 			},
 			value: ''
@@ -53,17 +53,18 @@ class ContactData extends Component {
 		email: {
 			elementType: 'input',
 			elementConfig: {
-				type: 'email'
+				type: 'email',
 				placeholder: 'Twój Email'
 			},
 			value: ''
 		},
 		deliveryMethod: {
 			elementType: 'select',
-			elementConfig: {
+			elementConfig:{
+				options:			
 				[{value: 'fastest', displayValue:'Najszybciej'},
 				{value: 'chipest', displayValue:'Najtaniej'}]
-			},
+			} ,
 			value: ''
 		},
 		loading: false
