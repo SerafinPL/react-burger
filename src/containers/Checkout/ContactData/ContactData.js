@@ -17,7 +17,11 @@ class ContactData extends Component {
 								type: 'text',
 								placeholder: 'Twoje Imię'
 							},
-							value: ''
+							value: '',
+							validation: {
+								required: true
+							},
+							valid: false
 						},
 						street: {
 							elementType: 'input',
@@ -25,7 +29,11 @@ class ContactData extends Component {
 								type: 'text',
 								placeholder: 'Ulica'
 							},
-							value: ''
+							value: '',
+							validation: {
+								required: true
+							},
+							valid: false
 						},
 						zipCode: {
 							elementType: 'input',
@@ -33,7 +41,11 @@ class ContactData extends Component {
 								type: 'text',
 								placeholder: 'Kod-pocztowy'
 							},
-							value: ''
+							value: '',
+							validation: {
+								required: true
+							},
+							valid: false
 						},
 						city: {
 							elementType: 'input',
@@ -41,7 +53,11 @@ class ContactData extends Component {
 								type: 'text',
 								placeholder: 'Miasto'
 							},
-							value: ''
+							value: '',
+							validation: {
+								required: true
+							},
+							valid: false
 						},
 						country: {
 							elementType: 'input',
@@ -49,7 +65,11 @@ class ContactData extends Component {
 								type: 'text',
 								placeholder: 'Kraj'
 							},
-							value: ''
+							value: '',
+							validation: {
+								required: true
+							},
+							valid: false
 						},
 						email: {
 							elementType: 'input',
@@ -57,16 +77,22 @@ class ContactData extends Component {
 								type: 'email',
 								placeholder: 'Twój Email'
 							},
-							value: ''
+							value: '',
+							validation: {
+								required: true
+							},
+							valid: false
 						},
 						deliveryMethod: {
 							elementType: 'select',
 							elementConfig:{
-								options:			
-								[{value: 'fastest', displayValue:'Najszybciej'},
-								{value: 'chipest', displayValue:'Najtaniej'}]
+								options: [
+									{value: 'fastest', displayValue:'Najszybciej'},
+									{value: 'chipest', displayValue:'Najtaniej'}
+								]
 							} ,
 							value: ''
+							
 						}
 					},
 		loading: false
@@ -75,9 +101,17 @@ class ContactData extends Component {
 	orderHandler = (event) => {
 		event.preventDefault();
 			this.setState({loading: true});
+
+			const dataForm = {};
+			for (let formElementId in this.state.orderForm){
+				dataForm[formElementId] = this.state.orderForm[formElementId].value;
+			}
+			
+
 			const order = {
 				ingredients: this.props.ingredients,
 				price: this.props.price,
+				orderData: dataForm
 				
 			}
 			axios.post('/orders.json', order)
@@ -88,6 +122,14 @@ class ContactData extends Component {
 				.catch(error => {
 					this.setState({loading: false});
 				} );
+	}
+
+	checkValidtity = (value, rules) => {
+		let isValid = false;
+
+		if (rules.required){
+			isValid = value.trim() !== '';
+		}
 	}
 
 	inputChangeHandler = (event, id) => {
@@ -111,7 +153,7 @@ class ContactData extends Component {
 		}
 		let form = (
 			
-					<form>
+					<form onSubmit={this.orderHandler}>
 						
 						{formElementArr.map(formElement => (
 								<Input 
@@ -123,7 +165,7 @@ class ContactData extends Component {
 								/>
 							))}
 						
-						<Button btnType='Success' clicked={this.orderHandler}>Zamów</Button>
+						<Button btnType='Success' >Zamów</Button>
 					</form>
 			
 					);
