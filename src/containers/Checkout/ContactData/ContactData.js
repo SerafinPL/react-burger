@@ -90,8 +90,15 @@ class ContactData extends Component {
 				} );
 	}
 
-	inputChangeHandler = (event) => {
-		
+	inputChangeHandler = (event, id) => {
+		console.log(event.target.value);
+		const updatedOrderForm = {...this.state.orderForm}; // wewnętrzne obiekty są wskaźnikami trzeba klonować dalej
+		const updatedFormElement = {...updatedOrderForm[id]};
+		updatedFormElement.value = event.target.value;
+		updatedOrderForm[id] = updatedFormElement;
+		this.setState({orderForm: updatedOrderForm});
+
+
 	}
 
 	render(){
@@ -112,7 +119,7 @@ class ContactData extends Component {
 									elementType={formElement.config.elementType}
 									elementConfig={formElement.config.elementConfig}
 									value={formElement.config.value}
-									changed={this.state.inputChangeHandler}
+									changed={(event) => this.inputChangeHandler(event, formElement.id)}
 								/>
 							))}
 						
