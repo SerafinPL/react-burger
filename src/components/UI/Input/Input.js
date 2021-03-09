@@ -8,7 +8,7 @@ const Input = (props) => {
 
 	const inputClasses = [classes.InputElement]
 
-	if (props.invalid && props.shouldValidate) {
+	if (props.invalid && props.shouldValidate && props.touched) {
 		inputClasses.push(classes.Invalid)
 	}
 
@@ -49,12 +49,18 @@ const Input = (props) => {
 						{...props.elementConfig} 
 						value={props.value}/>;
 	}
-	
+
+		let validationErrorMessage = null;
+		if (props.invalid && props.touched) {
+			validationErrorMessage = <p className={classes.Error}>Wprowadź poprawne dane warość {props.value} jest nieprawidłowa</p>
+		}
 
 		return(
 			<div className={classes.Input}>
 				<label className={classes.Label}>{props.label}</label>
+				{validationErrorMessage}
 				{inputElement}
+				
 			</div>
 		);
 	};
