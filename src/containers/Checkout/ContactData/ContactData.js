@@ -43,7 +43,9 @@ class ContactData extends Component {
 							},
 							value: '',
 							validation: {
-								required: true
+								required: true,
+								minLength: 5,
+								maxLength: 5
 							},
 							valid: false
 						},
@@ -125,19 +127,36 @@ class ContactData extends Component {
 	}
 
 	checkValidtity = (value, rules) => {
-		let isValid = false;
+		let isValid = true;
+		if (rules){
+			if (rules.required){
+				isValid = value.trim() !== '' && isValid;
+			}
 
-		if (rules.required){
-			isValid = value.trim() !== '';
-		}
+			if (rules.minLength){
+				isValid = value.length >= rules.minLength && isValid;
+			}
+
+			if (rules.maxLength){
+				isValid = value.length <= rules.maxLength && isValid;
+			}
+		} 
+		return isValid;
 	}
 
 	inputChangeHandler = (event, id) => {
-		console.log(event.target.value);
-		const updatedOrderForm = {...this.state.orderForm}; // wewnętrzne obiekty są wskaźnikami trzeba klonować dalej
-		const updatedFormElement = {...updatedOrderForm[id]};
+		
+		const updatedOrderForm = {
+			...this.state.orderForm
+		}; // wewnętrzne obiekty są wskaźnikami trzeba klonować dalej
+		const updatedFormElement = {
+			...updatedOrderForm[id]
+		};
 		updatedFormElement.value = event.target.value;
+
+		updatedFormElement.valid = this.checkValidtity(updatedFormElement.value, updatedFormElement.validation);
 		updatedOrderForm[id] = updatedFormElement;
+		console.log(updatedFormElement);
 		this.setState({orderForm: updatedOrderForm});
 
 
