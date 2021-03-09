@@ -90,6 +90,10 @@ class ContactData extends Component {
 				} );
 	}
 
+	inputChangeHandler = (event) => {
+		
+	}
+
 	render(){
 		const formElementArr = [];
 		for (let key in this.state.orderForm){
@@ -108,6 +112,7 @@ class ContactData extends Component {
 									elementType={formElement.config.elementType}
 									elementConfig={formElement.config.elementConfig}
 									value={formElement.config.value}
+									changed={this.state.inputChangeHandler}
 								/>
 							))}
 						
