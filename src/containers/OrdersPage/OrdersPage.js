@@ -3,6 +3,7 @@ import React, {useEffect, useState, Component} from 'react';
 import Order from '../../components/Order/Order';
 import axios from '../../axios-orders';
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
+import Spinner from '../../components/UI/Spinner/Spinner';
 
 // class OrdersPage extends Component{
 
@@ -60,11 +61,15 @@ const OrdersPage = (props) => {
 	// }
 
 	// render(){
-	let orderArr = ordersHook;
+	let loading = null;
+	if (loadingHook) {
+		loading = <Spinner/>;
+	}
+	  
 
 		return(
 			<div>
-
+				{loading}
 				{//this.state.orders.map(order => (
 					
 					ordersHook.map(order => (
@@ -74,6 +79,7 @@ const OrdersPage = (props) => {
 							price={order.price}
 						/>
 					))}
+				}
 				
 				
 			</div>
